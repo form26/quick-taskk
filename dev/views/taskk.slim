@@ -1,0 +1,22 @@
+doctype 5
+html lang="en"
+  head
+    meta charset='utf-8'
+    meta content="width=device-width,maximum-scale=1.0" name="viewport"
+    title
+      | Quick Taskk
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+    script src="./js/knockout.min.js"
+    script src="./js/taskk.js"
+    script src="./js/bootstrap.min.js"
+    script src="./quick_taskk.js"
+    link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="screen"
+    link type="text/css" href="./css/quick_taskk.css" rel="stylesheet" media="screen"
+
+  body
+    div.well id="main"
+      input type="text" id="title" title="What do you need to do?"
+      input type="text" id="estimate" title="How long will it take?"
+      span.small id="message"
+        ' Taskk <u>whatever</u> has been created!
+
