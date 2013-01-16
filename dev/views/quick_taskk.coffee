@@ -1,22 +1,22 @@
 $(document).ready ->
-  taskk = new TaskkAPI("69511f865944f219003f22221fc742a2")
+  taskk = new TaskkAPI("977a1ac598e8c6da8b42b5f2b1b8af67")
   $("#estimate").hide()
   textboxHint "main"
 
   $(document).keypress (e) ->
     if e.which == 13
+      if $("#estimate").is(":visible")
+        #validate the estimate
+        title = $("#title").val()
+        estimate = $("#estimate").val()
+        taskk.create_task title, estimate, 6208
+        $("#estimate").hide()
+        $("#title").show()
+
       if $("#title").is(":visible")
-        alert "hey"
         #validate the title
         $("#title").hide()
         $("#estimate").show()
-
-      if $("#estimate").is(":visible")
-        alert "het"
-        #validate the estimate
-        taskk.create_task "something", "5m", 21340
-        $("#estimate").hide()
-        $("#title").show()
     return true
   return
 
