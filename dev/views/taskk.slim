@@ -15,9 +15,14 @@ html lang="en"
     link type="text/css" href="./css/quick_taskk.css" rel="stylesheet" media="screen"
 
   body
-    div.well id="main"
-      input type="text" id="title" title="What do you need to do?"
+    div.feature.wrap id="main"
+      p
+        | quickk taskk
+      input type="text" id="task_title" title="What do you need to do?"
       input type="text" id="estimate" title="How long will it take?"
-      span.small id="message"
+      div id="loader"
+        img src="./img/ajax-loader.gif"
+      span.action id="message"
         ' Taskk <u>whatever</u> has been created!
+
 
