@@ -1,3 +1,22 @@
+# enable validation
+ko.validation.init()
+
+QuickTaskk = ->
+  @api_key = ko.observable()
+  @default_list = ko.observable()
+  @task_estimate = ko.observable().extend(
+    required: false
+    pattern: 
+      message: "Incorrect format. Ex: 5m or 2h"
+      params: "\d+(h\w*|m\w*)+"
+  )
+  @task_title = ko.observable().extend(
+    required: true
+    minLength: 1
+  )
+
+ko.applyBindings new QuickTaskk()
+
 $(document).ready ->
   taskk = new TaskkAPI("977a1ac598e8c6da8b42b5f2b1b8af67")
   $("#estimate").hide()
