@@ -12,17 +12,16 @@ QuickTaskk = ->
   )
   @task_title = ko.observable().extend(
     required: true
-    minLength: 1
   )
 
-ko.applyBindings new QuickTaskk()
+# ko.applyBindings new QuickTaskk()
 
 $(document).ready ->
   taskk = new TaskkAPI("977a1ac598e8c6da8b42b5f2b1b8af67")
   $("#estimate").hide()
   $("#message").hide()
   $("#loader").hide()
-  textboxHint "main"
+  textboxHint "container"
 
   $(document).keypress (e) ->
     if e.which == 13
