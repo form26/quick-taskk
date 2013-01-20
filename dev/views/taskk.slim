@@ -8,35 +8,43 @@ html lang="en"
     script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
     script src="./js/knockout.min.js"
     script src="./js/knockout.validation.min.js"
+    script src="./js/knockout.mapping.min.js"
     script src="https://raw.github.com/form26/taskk-js/master/taskk.js"
     script src="./js/bootstrap.min.js"
     script src="./quick_taskk.js"
     link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="screen"
-    link type="text/css" href="./css/quick_taskk.css" rel="stylesheet" media="screen"
+    link type="text/css" href="./quick_taskk.css" rel="stylesheet" media="screen"
+
 
   body
     div id="container"
-      div.feature.wrap id="setup_login" data-bind="visible: show_login"
+      / Login Screen
+      div.well.wrap id="setup_login" data-bind="visible: show_login"
         p
         form id="sign_in"
           input type="text" id="username" placeholder="Username or Email"
           input type="password" id="password" placeholder="Password"
-          input.action type="submit"
-           ' Login!
+          br
+          input.btn type="submit" value="Login!"
+          div id="login_loader"
+            img src="./img/ajax-loader.gif"
 
-      div.feature.wrap id="setup_list" data-bind="visible: show_change_list"
-
-      div.feature.wrap id="create_task" data-bind="visible: show_create_task"
-        p
-          | quickk taskk
+      / Create Taskk Screen
+      div.well.wrap id="create_task" data-bind="visible: show_create_task"
         input type="text" id="task_title" placeholder="What do you need to do?"
         input type="text" id="estimate" placeholder="How long will it take?"
         div id="loader"
           img src="./img/ajax-loader.gif"
-      span.message id="message"
-        ' Taskk has been created!
-      span.current_list id="current_list"
-        ' List:
-        a href="#" id="list_link"
+        br
+        span.message.label.label-success id="message"
+          ' Taskk has been created!
+        br
+        br
+        span.current_list id="current_list"
+          ' List:
+          a href="#" id="list_link"
+        select id="select_list" data-bind="options: lists(), optionsText: function(item) { return item.title }"
+
+        
 
 

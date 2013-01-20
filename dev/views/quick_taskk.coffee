@@ -22,8 +22,12 @@ $(document).ready ->
       required: true
     )
     @show_login = ko.observable(false)
+
     @show_create_task = ko.observable(false)
-    @show_change_list = ko.observable(false)
+
+    @lists = ko.mapping.fromJS([])
+
+    @selected_list = ko.observable('')
 
     # if API key is valid. Allow to add tasks
     @check_key = () =>
@@ -32,17 +36,29 @@ $(document).ready ->
       ping.success (data) =>
         @show_login(false)
         @show_create_task(true)
+        @load_lists()
         return
       ping.error (data) =>
+        $("#login_loader").hide()
         @show_login(true)
+        return
+      return
+
+    @load_lists = () =>
+      get_lists = taskk_api.get_lists()
+      get_lists.success (data) =>
+        ko.mapping.fromJS(data,@lists)
+        return
+      get_lists.error (data) =>
+        alert("uh oh! couldn't load your lists!")
         return
       return
 
     @logged_in = (key) =>
       localStorage.api_key = key
-      self.api_key = key
+      @api_key = key
       taskk_api.set_token(key)
-      this.check_key()
+      @check_key()
       return
 
     return
@@ -55,16 +71,20 @@ $(document).ready ->
   if localStorage.api_key
     ViewModel.logged_in(localStorage.api_key)
   else
+    $("#login_loader").hide()
     ViewModel.show_login(true)
-    #display login
-
-
-    # ViewModel.api_key = data.token
   
 
   $("#sign_in").submit ->
     username = $("#username").val()
     password = $("#password").val()
+
+    $("#username").attr("disabled", "disabled")
+    $("#password").attr("disabled", "disabled")
+
+    $("#submit").hide();
+    $("#login_loader").show();
+
     login = taskk_api.login(username,password)
     login.success (data) ->
       ViewModel.logged_in(data.token)
