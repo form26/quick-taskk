@@ -200,21 +200,20 @@ img.github {
   }
 }
 /* line 118, ../../../app/assets/stylesheets/views/home.css.sass */
-.action {
+a.action {
   outline: 0;
   text-align: center;
   text-transform: capitalize;
   text-decoration: none;
   font-weight: 600;
   line-height: 1em;
-  
   width: auto;
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: top;
   zoom: 1;
   *display: inline;
-  padding: 3px 3px;
+  padding: 8px 11px;
   font-size: 1em;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -224,6 +223,7 @@ img.github {
   -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0 inset, rgba(0, 0, 0, 0.2) 0 2px 2px 0;
   -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0 inset, rgba(0, 0, 0, 0.2) 0 2px 2px 0;
   box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0 inset, rgba(0, 0, 0, 0.2) 0 2px 2px 0;
+  cursor: pointer;
   color: #f9f7fc;
   text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b891e1), color-stop(100%, #8a59bf));
@@ -235,10 +235,10 @@ img.github {
   border-top: 1px solid #8a59bf;
   border-bottom: 1px solid #5c3b7f;
   margin: 5px auto 5px auto;
-  padding: 3px 3px;
+  padding: 15px 60px;
 }
 /* line 107, ../../../app/assets/stylesheets/partials/_helpers.sass */
-/*a.action:hover {
+a.action:hover {
   -webkit-box-shadow: rgba(255, 255, 255, 0.6) 0 1px 3px inset, rgba(0, 0, 0, 0.2) 0 2px 2px 0;
   -moz-box-shadow: rgba(255, 255, 255, 0.6) 0 1px 3px inset, rgba(0, 0, 0, 0.2) 0 2px 2px 0;
   box-shadow: rgba(255, 255, 255, 0.6) 0 1px 3px inset, rgba(0, 0, 0, 0.2) 0 2px 2px 0;
@@ -252,9 +252,9 @@ img.github {
   border: 1px solid #835bad;
   border-top: 1px solid #9366c3;
   border-bottom: 1px solid #624482;
-}*/
+}
 /* line 110, ../../../app/assets/stylesheets/partials/_helpers.sass */
-/*a.action:active {
+a.action:active {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 2px 4px inset, rgba(0, 0, 0, 0.5) 0 1px 0 0;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 2px 4px inset, rgba(0, 0, 0, 0.5) 0 1px 0 0;
   box-shadow: rgba(0, 0, 0, 0.6) 0 2px 4px inset, rgba(0, 0, 0, 0.5) 0 1px 0 0;
@@ -269,8 +269,6 @@ img.github {
   border-top: 1px solid #7c50ab;
   border-bottom: 1px solid #523572;
 }
-*/
-/* line 123, ../../../app/assets/stylesheets/views/home.css.sass */
 #footer, #header {
   text-align: center;
   margin: 40px 0;

@@ -8,9 +8,8 @@ html lang="en"
     script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
     script src="./js/knockout.min.js"
     script src="./js/knockout.validation.min.js"
-    script src="./js/taskk.js"
+    script src="https://raw.github.com/form26/taskk-js/master/taskk.js"
     script src="./js/bootstrap.min.js"
-    script src="./js/text_hint.js"
     script src="./quick_taskk.js"
     link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="screen"
     link type="text/css" href="./css/quick_taskk.css" rel="stylesheet" media="screen"
@@ -18,11 +17,12 @@ html lang="en"
   body
     div id="container"
       div.feature.wrap id="setup_login"
-        h2
-          | Login to taskk
         p
-        input type="text" id="username" title="Username or Email"
-        input type="text" id="password" title="Password"
+        form id="sign_in"
+          input type="text" id="username" placeholder="Username or Email"
+          input type="password" id="password" placeholder="Password"
+          input.action type="submit"
+           ' Login!
 
       div.feature.wrap id="setup_list"
 
@@ -31,11 +31,11 @@ html lang="en"
       div.feature.wrap id="create_task"
         p
           | quickk taskk
-        input type="text" id="task_title" title="What do you need to do?"
-        input type="text" id="estimate" title="How long will it take?"
+        input type="text" id="task_title" placeholder="What do you need to do?"
+        input type="text" id="estimate" placeholder="How long will it take?"
         div id="loader"
           img src="./img/ajax-loader.gif"
-        span.action id="message"
-          ' Taskk <u>whatever</u> has been created!
+      span.message id="message"
+        ' Taskk has been created!
 
 

@@ -1,6 +1,7 @@
 # enable validation
 ko.validation.init()
 
+#define view model
 QuickTaskk = ->
   @api_key = ko.observable()
   @default_list = ko.observable()
@@ -13,15 +14,40 @@ QuickTaskk = ->
   @task_title = ko.observable().extend(
     required: true
   )
+  @username = ko.observable().extend(
+    required: true
+  )
+  @password = ko.observable().extend(
+    required: true
+  )
 
-# ko.applyBindings new QuickTaskk()
+
 
 $(document).ready ->
-  taskk = new TaskkAPI("977a1ac598e8c6da8b42b5f2b1b8af67")
+  ViewModel = new QuickTaskk
+  taskk_api = new TaskkAPI
+
+
+    # ViewModel.api_key = data.token
+  # ko.applyBindings ViewModel
+
+  #check local storage for settings / load settings
+
+  #Login
+
+  $("#sign_in").submit ->
+    username = $("#username").val()
+    password = $("#password").val()
+    login = taskk_api.login(username,password)
+    login.success (data) -> 
+      alert(JSON.stringify(data))
+    return
+  
+    # taskk.
+
   $("#estimate").hide()
   $("#message").hide()
-  $("#loader").hide()
-  textboxHint "container"
+  $("#loader").hide()  
 
   $(document).keypress (e) ->
     if e.which == 13
@@ -31,7 +57,7 @@ $(document).ready ->
         estimate = $("#estimate").val()
         $("#estimate").hide()
         $("#loader").show()
-        new_task = taskk.create_task title, estimate, 6208
+        new_task = taskk_api.create_task title, estimate, 6208
 
         new_task.success (data) -> 
           $("#loader").hide()
