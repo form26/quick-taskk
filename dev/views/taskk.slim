@@ -16,7 +16,7 @@ html lang="en"
 
   body
     div id="container"
-      div.feature.wrap id="setup_login"
+      div.feature.wrap id="setup_login" data-bind="visible: show_login"
         p
         form id="sign_in"
           input type="text" id="username" placeholder="Username or Email"
@@ -24,11 +24,9 @@ html lang="en"
           input.action type="submit"
            ' Login!
 
-      div.feature.wrap id="setup_list"
+      div.feature.wrap id="setup_list" data-bind="visible: show_change_list"
 
-      div.feature.wrap id="settings"
-
-      div.feature.wrap id="create_task"
+      div.feature.wrap id="create_task" data-bind="visible: show_create_task"
         p
           | quickk taskk
         input type="text" id="task_title" placeholder="What do you need to do?"
