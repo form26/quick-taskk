@@ -24,12 +24,25 @@ $(document).ready ->
     @show_login = ko.observable(false)
     @show_create_task = ko.observable(false)
     @show_change_list = ko.observable(false)
-    @logged_in = (key) ->
+
+    # if API key is valid. Allow to add tasks
+    @check_key = () =>
+      # check if saved API key is valid
+      ping = taskk_api.ping()
+      ping.success (data) =>
+        @show_login(false)
+        @show_create_task(true)
+        return
+      ping.error (data) =>
+        @show_login(true)
+        return
+      return
+
+    @logged_in = (key) =>
       localStorage.api_key = key
       self.api_key = key
       taskk_api.set_token(key)
-      self.show_login(false)
-      self.show_change_list(true)
+      this.check_key()
       return
 
     return
@@ -40,9 +53,7 @@ $(document).ready ->
   ko.applyBindings ViewModel
 
   if localStorage.api_key
-    ViewModel.api_key = localStorage.api_key
-    taskk_api.set_token(localStorage.api_key)
-    ViewModel.show_create_task(true)
+    ViewModel.logged_in(localStorage.api_key)
   else
     ViewModel.show_login(true)
     #display login
