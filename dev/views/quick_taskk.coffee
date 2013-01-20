@@ -21,9 +21,17 @@ $(document).ready ->
     @password = ko.observable().extend(
       required: true
     )
-    @show_login = ko.observable(true)
+    @show_login = ko.observable(false)
     @show_create_task = ko.observable(false)
-    @show_change_list = ko.observable(false) 
+    @show_change_list = ko.observable(false)
+    @logged_in = (key) ->
+      localStorage.api_key = key
+      self.api_key = key
+      taskk_api.set_token(key)
+      self.show_login(false)
+      self.show_change_list(true)
+      return
+
     return
 
   ViewModel = new QuickTaskk
@@ -33,25 +41,25 @@ $(document).ready ->
 
   if localStorage.api_key
     ViewModel.api_key = localStorage.api_key
+    taskk_api.set_token(localStorage.api_key)
+    ViewModel.show_create_task(true)
   else
+    ViewModel.show_login(true)
     #display login
 
 
     # ViewModel.api_key = data.token
   
 
-  #check local storage for settings / load settings
-
-  #Login
-
   $("#sign_in").submit ->
     username = $("#username").val()
     password = $("#password").val()
     login = taskk_api.login(username,password)
     login.success (data) ->
-      localStorage['api_key'] = data.token
-      ViewModel.api_key = localStorage.api_key 
-    return
+      ViewModel.logged_in(data.token)
+    login.error (data) ->
+      alert "login failed dude" 
+    return false
 
   $("#estimate").hide()
   $("#message").hide()
