@@ -43,7 +43,7 @@ html lang="en"
         span.current_list id="current_list"
           ' List:
           a href="#" id="list_link"
-        select id="select_list" data-bind="options: lists(), optionsText: function(item) { return item.title }"
+        select id="select_list" data-bind="options: lists(), optionsText: function(item) { return item.title }, value: function(item) { return item.id }"
 
         
 

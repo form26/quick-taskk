@@ -102,9 +102,10 @@ $(document).ready ->
         #validate the estimate
         title = $("#task_title").val()
         estimate = $("#estimate").val()
+        sel_list = $("#select_list").val()
         $("#estimate").hide()
         $("#loader").show()
-        new_task = taskk_api.create_task title, estimate, 6208
+        new_task = taskk_api.create_task title, estimate, sel_list
 
         new_task.success (data) -> 
           $("#loader").hide()
