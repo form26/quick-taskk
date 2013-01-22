@@ -41,6 +41,7 @@ $(document).ready ->
       ping.error (data) =>
         $("#login_loader").hide()
         @show_login(true)
+        $("#username").focus()
         return
       return
 
@@ -68,10 +69,12 @@ $(document).ready ->
 
   ko.applyBindings ViewModel
 
+  # check if already logged in
   if localStorage.api_key
     ViewModel.logged_in(localStorage.api_key)
   else
     $("#login_loader").hide()
+    $("#username").focus()
     ViewModel.show_login(true)
   
 
@@ -85,6 +88,7 @@ $(document).ready ->
     $("#submit").hide();
     $("#login_loader").show();
 
+    # login/get API key via API
     login = taskk_api.login(username,password)
     login.success (data) ->
       ViewModel.logged_in(data.token)
