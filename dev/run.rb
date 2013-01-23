@@ -7,4 +7,4 @@ get('/') { slim :taskk }
 
 get('/js/quick_taskk.js') { coffee :quick_taskk}
 
-get('/css/quick_taskk.css') { sass :quick_taskk}
+get('/css/taskk_style.css') { sass :taskk_style}

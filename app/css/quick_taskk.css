@@ -1,3 +1,6 @@
-input.blur {
-  color:#808080;
-}
+.well {
+  width: 300px;
+  height: 150px; }
+
+.hidden {
+  display: none; }

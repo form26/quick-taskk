@@ -1,4 +1,5 @@
 *.gem
+*.sass-cache
 *.rbc
 .bundle
 .config

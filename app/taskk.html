@@ -1,1 +1,37 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta content="width=device-width,maximum-scale=1.0" name="viewport" /><title>Quick Taskk</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="./js/knockout.min.js"></script><script src="./js/taskk.js"></script><script src="./js/bootstrap.min.js"></script><script src="./js/quick_taskk.js"></script><link href="./css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" /><link href="./css/quick_taskk.css" media="screen" rel="stylesheet" type="text/css" /></head><body><div class="well" id="main"><input id="title" title="What do you need to do?" type="text" /><input id="estimate" title="How long will it take?" type="text" /><span class="badge badge-important">Taskk added!</span></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,maximum-scale=1.0" name="viewport" />
+    <title>Quick Taskk</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="./js/knockout.min.js"></script>
+    <script src="./js/knockout.validation.min.js"></script>
+    <script src="./js/knockout.mapping.min.js"></script>
+    <script src="https://raw.github.com/form26/taskk-js/master/taskk.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/quick_taskk.js"></script>
+    <link href="./css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="./css/quick_taskk.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="well wrap" data-bind="visible: show_login" id="setup_login">
+        <p></p>
+        <form id="sign_in">
+          <input id="username" placeholder="Username or Email" type="text" /><input id="password" placeholder="Password" type="password" /><br /><input class="btn" type="submit" value="Login!" />
+          <div id="login_loader">
+            <img src="./img/ajax-loader.gif" />
+          </div>
+        </form>
+      </div>
+      <div class="well wrap" data-bind="visible: show_create_task" id="create_task">
+        <input id="task_title" placeholder="What do you need to do?" type="text" /><input id="estimate" placeholder="How long will it take?" type="text" />
+        <div id="loader">
+          <img src="./img/ajax-loader.gif" />
+        </div>
+        <span class="message label label-success" id="message">Taskk has been created! </span><br /><br /><span class="current_list" id="current_list">List: <br /></span><select data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list" id="select_list"></select>
+      </div>
+    </div>
+  </body>
+</html>

@@ -106,7 +106,7 @@ $(document).ready ->
         #validate the estimate
         title = $("#task_title").val()
         estimate = $("#estimate").val()
-        sel_list = $("#select_list").val()
+        sel_list = ViewModel.selected_list
         $("#estimate").hide()
         $("#loader").show()
         new_task = taskk_api.create_task title, estimate, sel_list
@@ -116,7 +116,7 @@ $(document).ready ->
           $("#task_title").val('')
           $("#estimate").val('')
           $("#task_title").show() 
-          $('#task_title').blur()
+          $('#task_title').focus()
           $("#message").text("Task created!")
           $("#message").fadeIn('fast').delay('2000').fadeOut('fast')
           return false
