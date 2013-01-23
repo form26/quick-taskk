@@ -27,7 +27,7 @@ $(document).ready ->
 
     @lists = ko.mapping.fromJS([])
 
-    @selected_list = ko.observable('')
+    @selected_list = ko.observable()
 
     # if API key is valid. Allow to add tasks
     @check_key = () =>

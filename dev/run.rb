@@ -5,6 +5,6 @@ require 'sass'
 
 get('/') { slim :taskk }
 
-get('/quick_taskk.js') { coffee :quick_taskk}
+get('/js/quick_taskk.js') { coffee :quick_taskk}
 
-get('/quick_taskk.css') { sass :quick_taskk}
+get('/css/quick_taskk.css') { sass :quick_taskk}
