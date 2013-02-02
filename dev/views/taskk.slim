@@ -19,32 +19,37 @@ html lang="en"
   body
     div
       / Login Screen
-      div.well.wrap id="setup_login" data-bind="visible: show_login"
+      div.ext_well.login.wrap id="setup_login" data-bind="visible: show_login"
+        img src="../img/brain.png"
+        h1 Taskk
+        h2 Task Management with a Brain. Finally.
         p
         form id="sign_in"
           input type="text" id="username" placeholder="Username or Email"
           input type="password" id="password" placeholder="Password"
           br
-          input.btn type="submit" value="Login!"
+          input.btn.btn-primary type="submit" value="Login!"
           div id="login_loader"
             img src="./img/ajax-loader.gif"
 
       / Create Taskk Screen
-      div.well.wrap id="create_task" data-bind="visible: show_create_task"
-        input type="text" id="task_title" placeholder="What do you need to do?"
-        input type="text" id="estimate" placeholder="How long will it take?"
-        div id="loader"
-          img src="./img/ajax-loader.gif"
-    
-        span.message.label.label-success id="message"
-          ' Taskk has been created!
-        br
-        br
+      div.ext_well.add_taskks.wrap id="create_task" data-bind="visible: show_create_task"
+        #branding
+          img.little_brain src="../img/brain.png"
+          h1
+            | Add Taskks
         span.current_list id="current_list"
-          ' List:
-          br
         select id="select_list" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list"
 
-        
+        input.title_entry type="text" id="task_title" placeholder="What do you need to do?"
+        input.est_entry type="text" id="estimate" placeholder="How long will it take?"
+        div id="loader"
+          img src="./img/ajax-loader.gif"
+
+        span.message.label.label-success id="message"
+          ' Taskk has been created!
+
+
+
 
 
