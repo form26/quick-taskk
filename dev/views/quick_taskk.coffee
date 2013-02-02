@@ -68,9 +68,12 @@ $(document).ready ->
   ViewModel = new QuickTaskk
   taskk_api = new TaskkAPI
 
-  # 0 = start. 1 = estimate. 2 = select_list
+  # 0 = start. 1 = estimate.
   stage = 0
 
+  $("#estimate").hide()
+  $("#message").hide()
+  $("#loader").hide()
   $(".chzn-select").chosen()
 
   ko.applyBindings ViewModel
@@ -82,7 +85,9 @@ $(document).ready ->
     $("#login_loader").hide()
     $("#username").focus()
     ViewModel.show_login(true)
-  
+
+  if localStorage.selected_list
+    ViewModel.selected_list = localStorage.selected_list
 
   $("#sign_in").submit ->
     username = $("#username").val()
@@ -102,14 +107,8 @@ $(document).ready ->
       alert "login failed dude" 
     return false
 
-  $("#estimate").hide()
-  $("#message").hide()
-  $("#loader").hide()
-  $("#select_list").hide()  
-
   $(document).keypress (e) ->
     if e.which == 13
-
       switch stage
         when 0
           #TODO validate the title
@@ -121,17 +120,15 @@ $(document).ready ->
           #TODO validate the estimate
           
           $("#estimate").hide()
-          $("#select_list").show()
-          stage = 2
-        when 2
           title = $("#task_title").val()
           estimate = $("#estimate").val()
           sel_list = ViewModel.selected_list
-          $("#select_list").hide()
           $("#loader").show()
           new_task = taskk_api.create_task title, estimate, sel_list
 
           stage = 0
+
+          localStorage.selected_list = ViewModel.selected_list
 
           new_task.success (data) -> 
             $("#loader").hide()
@@ -139,9 +136,11 @@ $(document).ready ->
             $("#estimate").val('')
             $("#task_title").show() 
             $('#task_title').focus()
+            $("#select_list_wrap").show()
             $("#message").text("Task created!")
             $("#message").fadeIn('fast').delay('2000').fadeOut('fast')
             return false
+
         
     return true
   return
