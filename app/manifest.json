@@ -3,6 +3,7 @@
   "version": "1.0",
   "manifest_version": 2,
   "description": "Quickly add your tasks from chrome!",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "taskk.html"

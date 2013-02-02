@@ -128,4 +128,3 @@ $(document).ready ->
         $("#estimate").focus()
     return true
   return
-
