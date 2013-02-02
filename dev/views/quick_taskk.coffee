@@ -49,6 +49,7 @@ $(document).ready ->
       get_lists = taskk_api.get_lists()
       get_lists.success (data) =>
         ko.mapping.fromJS(data,@lists)
+        $("#select_list").trigger("liszt:updated")
         return
       get_lists.error (data) =>
         alert("uh oh! couldn't load your lists!")
@@ -66,6 +67,11 @@ $(document).ready ->
 
   ViewModel = new QuickTaskk
   taskk_api = new TaskkAPI
+
+  # 0 = start. 1 = estimate. 2 = select_list
+  stage = 0
+
+  $(".chzn-select").chosen()
 
   ko.applyBindings ViewModel
 
@@ -98,33 +104,44 @@ $(document).ready ->
 
   $("#estimate").hide()
   $("#message").hide()
-  $("#loader").hide()  
+  $("#loader").hide()
+  $("#select_list").hide()  
 
   $(document).keypress (e) ->
     if e.which == 13
-      if $("#estimate").is(":visible")
-        #validate the estimate
-        title = $("#task_title").val()
-        estimate = $("#estimate").val()
-        sel_list = ViewModel.selected_list
-        $("#estimate").hide()
-        $("#loader").show()
-        new_task = taskk_api.create_task title, estimate, sel_list
 
-        new_task.success (data) -> 
-          $("#loader").hide()
-          $("#task_title").val('')
-          $("#estimate").val('')
-          $("#task_title").show() 
-          $('#task_title').focus()
-          $("#message").text("Task created!")
-          $("#message").fadeIn('fast').delay('2000').fadeOut('fast')
-          return false
+      switch stage
+        when 0
+          #TODO validate the title
+          $("#task_title").hide()
+          $("#estimate").show()
+          $("#estimate").focus()
+          stage = 1
+        when 1
+          #TODO validate the estimate
+          
+          $("#estimate").hide()
+          $("#select_list").show()
+          stage = 2
+        when 2
+          title = $("#task_title").val()
+          estimate = $("#estimate").val()
+          sel_list = ViewModel.selected_list
+          $("#select_list").hide()
+          $("#loader").show()
+          new_task = taskk_api.create_task title, estimate, sel_list
+
+          stage = 0
+
+          new_task.success (data) -> 
+            $("#loader").hide()
+            $("#task_title").val('')
+            $("#estimate").val('')
+            $("#task_title").show() 
+            $('#task_title').focus()
+            $("#message").text("Task created!")
+            $("#message").fadeIn('fast').delay('2000').fadeOut('fast')
+            return false
         
-      else if $("#task_title").is(":visible")
-        #validate the title
-        $("#task_title").hide()
-        $("#estimate").show()
-        $("#estimate").focus()
     return true
   return
