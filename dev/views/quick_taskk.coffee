@@ -80,6 +80,7 @@ $(document).ready ->
 
   $("#estimate").hide()
   $("#message").hide()
+  $("#message_login").hide()
   $("#loader").hide()
   $(".chzn-select").chosen()
 
@@ -115,7 +116,11 @@ $(document).ready ->
     login.success (data) ->
       ViewModel.logged_in(data.token)
     login.error (data) ->
-      alert "login failed dude" 
+      $("#submit").show();
+      $("#login_loader").hide();
+      $("#username").removeAttr('disabled');
+      $("#password").removeAttr('disabled');
+      $("#message_login").fadeIn('fast').delay('2000').fadeOut('fast')
     return false
 
   $(document).keypress (e) ->
