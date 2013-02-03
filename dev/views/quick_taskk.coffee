@@ -39,10 +39,17 @@ $(document).ready ->
         @load_lists()
         return
       ping.error (data) =>
-        $("#login_loader").hide()
-        @show_login(true)
-        $("#username").focus()
+        @log_out()
         return
+      return
+
+    @log_out = () =>
+      $("#login_loader").hide()
+      @show_create_task(false)
+      @show_login(true)
+      $("#username").focus()
+      localStorage.removeItem("api_key")
+      localStorage.removeItem("selected_list")
       return
 
     @load_lists = () =>
@@ -88,6 +95,10 @@ $(document).ready ->
 
   if localStorage.selected_list
     ViewModel.selected_list = localStorage.selected_list
+
+  $("#logout").click ->
+    ViewModel.log_out()
+    return false
 
   $("#sign_in").submit ->
     username = $("#username").val()
