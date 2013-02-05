@@ -9,10 +9,11 @@ html lang="en"
     script src="./js/knockout.min.js"
     script src="./js/knockout.validation.min.js"
     script src="./js/knockout.mapping.min.js"
-    script src="./js/taskk.js"
     script src="./js/bootstrap.min.js"
     script src="./js/chosen.min.js"
-    script src="./js/quick_taskk.js"
+    script src="./js/taskk_api.js"
+    script src="./js/quicktaskk.js"
+    script src="./js/taskk.js"
     link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="screen"
     link type="text/css" href="./css/taskk_style.css" rel="stylesheet" media="screen"
     link type="text/css" href="./css/chosen.css" rel="stylesheet" media="screen"
@@ -25,39 +26,46 @@ html lang="en"
         img src="../img/brain.png"
         h1 Taskk
         h2 Task Management with a Brain. Finally.
-        span id="message_login"
-          strong
+        span.message.label.label-error id="message_login"
+          ' Error - Taskk couldn't be created!
             ' Invalid Username/Password!
         form id="sign_in"
-          input type="text" id="username" placeholder="Username or Email"
-          input type="password" id="password" placeholder="Password"
+          input type="text" id="username" required=true placeholder="Username or Email"
+          input type="password" id="password" required=true placeholder="Password"
           br
-          input.btn.btn-primary type="submit" value="Login!"
+          input.btn.btn-primary type="submit" value="Login!" data-bind="click: log_in"
           div id="login_loader"
             img src="./img/ajax-loader.gif"
+        a href="https://taskk.it/users/new"
+          ' Sign up!
+        ' |
+        a href="https://taskk.it/passwords/new"
+          ' Forgot Password
 
       / Create Taskk Screen
-
       div.ext_well.add_taskks.wrap id="create_task" data-bind="visible: show_create_task"
         #branding
           img.little_brain src="../img/brain.png"
           h1
             | Add Taskks
-        span.current_list id="current_list"
-        div id="select_list_wrap"
-          select.chzn-select id="select_list" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list"
 
-        input.title_entry type="text" id="task_title" placeholder="What do you need to do?"
-        input.est_entry type="text" id="estimate" placeholder="How long will it take?"
-        div id="loader"
+        select.chzn-select id="select_list" style="width:200px;" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list"
+
+        input.title_entry type="text" id="title" required=true placeholder="What do you need to do?" data-bind="value: task_title(), visible: show_title"
+
+        input.est_entry type="text" id="estimate" placeholder="How long will it take?" pattern="^(\d*([.,]\d*)?)\s*(h\w*|m\w*)?" data-bind="value: task_estimate, validationElement: task_estimate, visible: show_estimate"
+
+        div id="loader" data-bind="visible: show_loader"
           br
           img src="./img/ajax-loader.gif"
 
         span.message.label.label-success id="message"
           ' Taskk has been created!
+        span.message.label.label-error id="message_error"
+          ' Error - Taskk couldn't be created!
         br
         br
-        a href="#" id="logout"
+        a id="logout" data-bind="click: log_out"
           ' Logout
 
 

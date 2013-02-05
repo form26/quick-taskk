@@ -21,4 +21,5 @@ end
 
 get('/') { slim :taskk }
 
-get('/js/quick_taskk.js') { coffee :quick_taskk}
+get('/js/quicktaskk.js') { coffee :quicktaskk}
+get('/js/taskk.js') { coffee :taskk}
