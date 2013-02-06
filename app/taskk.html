@@ -8,29 +8,41 @@
     <script src="./js/knockout.min.js"></script>
     <script src="./js/knockout.validation.min.js"></script>
     <script src="./js/knockout.mapping.min.js"></script>
-    <script src="./js/taskk.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/quick_taskk.js"></script>
+    <script src="./js/chosen.min.js"></script>
+    <script src="./js/taskk_api.js"></script>
+    <script src="./js/quicktaskk.js"></script>
+    <script src="./js/taskk.js"></script>
     <link href="./css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="./css/taskk_style.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="./css/chosen.css" media="screen" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div>
-      <div class="well wrap" data-bind="visible: show_login" id="setup_login">
-        <p></p>
+      <div class="ext_well login wrap" data-bind="visible: show_login" id="setup_login">
+        <img src="../img/brain.png" />
+        <h1>Taskk</h1>
+        <h2>Task Management with a Brain. Finally.</h2>
+        <span class="message label label-error" id="message_login">Error - Taskk couldn't be created!
+          ' Invalid Username/Password! </span>
         <form id="sign_in">
-          <input id="username" placeholder="Username or Email" type="text" /><input id="password" placeholder="Password" type="password" /><br /><input class="btn" type="submit" value="Login!" />
+          <input id="username" placeholder="Username or Email" required="required" type="text" /><input id="password" placeholder="Password" required="required" type="password" /><br /><input class="btn btn-primary" data-bind="click: log_in" type="submit" value="Login!" />
           <div id="login_loader">
             <img src="./img/ajax-loader.gif" />
           </div>
         </form>
+        <a href="https://taskk.it/users/new">Sign up! </a>| <a href="https://taskk.it/passwords/new">Forgot Password </a>
       </div>
-      <div class="well wrap" data-bind="visible: show_create_task" id="create_task">
-        <input id="task_title" placeholder="What do you need to do?" type="text" /><input id="estimate" placeholder="How long will it take?" type="text" />
-        <div id="loader">
-          <img src="./img/ajax-loader.gif" />
+      <div class="ext_well add_taskks wrap" data-bind="visible: show_create_task" id="create_task">
+        <div id="branding">
+          <img class="little_brain" src="../img/brain.png" />
+          <h1>Add Taskks</h1>
         </div>
-        <span class="message label label-success" id="message">Taskk has been created! </span><br /><br /><span class="current_list" id="current_list">List: <br /></span><select data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list" id="select_list"></select>
+        <select class="chzn-select" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list" id="select_list" style="width:200px;"></select><input class="title_entry" data-bind="value: task_title, visible: show_title, valueUpdate: 'afterkeydown', validationElement: task_title" id="title" placeholder="What do you need to do?" type="text" /><span class="message label label-error" id="title_error"></span><input class="est_entry" data-bind="value: task_estimate, visible: show_estimate, valueUpdate: 'afterkeydown', validationElement: task_estimate" id="estimate" placeholder="How long will it take?" type="text" /><span class="message label label-error" id="estimate_error"></span>
+        <div data-bind="visible: show_loader" id="loader">
+          <br /><img src="./img/ajax-loader.gif" />
+        </div>
+        <br /><span class="message label label-success" id="message">Taskk has been created! </span><span class="message label label-error" id="message_error">Error - Taskk couldn't be created! </span><br /><br /><a data-bind="click: log_out" id="logout">Logout </a>
       </div>
     </div>
   </body>

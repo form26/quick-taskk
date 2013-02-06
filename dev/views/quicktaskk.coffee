@@ -1,11 +1,15 @@
 #define view model
 window.QuickTaskk = ->
-  @task_estimate = ko.observable().extend(
-    required: true
-  )
   @task_title = ko.observable().extend(
     required: true
   )
+  @task_estimate = ko.observable().extend(
+    pattern: {
+                 message: 'format: 5m or 2h',
+                 params: /^\d+([.,]\d+)?(([mM](in)?s?)?|[hH](our)?s?)?$/
+            }
+  )
+
   @username = ko.observable('')
   @password = ko.observable('')
 

@@ -1,7 +1,67 @@
-.well {
+a {
+  font-size: small; }
+
+.btn-primary {
+  background-image: none;
+  background-color: #8a59bf; }
+  .btn-primary:hover {
+    background-color: #7140a5; }
+
+.ext_well {
   width: 300px;
-  height: 150px;
-  margin: 0px; }
+  margin: 0px;
+  border-radius: none;
+  background-color: #f1f2f5;
+  padding: 20px; }
 
 .hidden {
   display: none; }
+
+h1, h2, h3, h4, h5, h6, p, ul, li {
+  color: #333333;
+  text-shadow: 1px 1px 1px white; }
+
+h1 {
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0; }
+
+h2 {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0; }
+
+.login {
+  text-align: center; }
+  .login h2 {
+    margin: 0 0 15px 0; }
+
+img.little_brain {
+  width: 40px;
+  margin: -5px 5px 0 0; }
+
+input.title_entry, input.est_entry {
+  margin: 5px 0 0 0; }
+
+.add_taskks {
+  height: 160px; }
+  .add_taskks h1 {
+    display: inline;
+    font-size: 18px; }
+
+#branding {
+  margin: 0 0 10px 0; }
+
+span.label-success {
+  background-color: #8a59bf;
+  margin-top: 15px;
+  padding: 5px 10px; }
+
+span.label-error {
+  background-color: #f02b42;
+  margin-top: 15px;
+  padding: 5px 10px; }

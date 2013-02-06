@@ -51,14 +51,14 @@ html lang="en"
 
         select.chzn-select id="select_list" style="width:200px;" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list"
 
-        input.title_entry type="text" id="title" required=true placeholder="What do you need to do?" data-bind="value: task_title(), visible: show_title"
+        input.title_entry type="text" id="title"placeholder="What do you need to do?" data-bind="value: task_title, visible: show_title, valueUpdate: 'afterkeydown', validationElement: task_title"
 
-        input.est_entry type="text" id="estimate" placeholder="How long will it take?" pattern="^(\d*([.,]\d*)?)\s*(h\w*|m\w*)?" data-bind="value: task_estimate, validationElement: task_estimate, visible: show_estimate"
+        input.est_entry type="text" id="estimate" placeholder="How long will it take?" data-bind="value: task_estimate, visible: show_estimate, valueUpdate: 'afterkeydown', validationElement: task_estimate"
 
         div id="loader" data-bind="visible: show_loader"
           br
           img src="./img/ajax-loader.gif"
-
+        br
         span.message.label.label-success id="message"
           ' Taskk has been created!
         span.message.label.label-error id="message_error"
