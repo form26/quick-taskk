@@ -38,7 +38,7 @@
           <img class="little_brain" src="../img/brain.png" />
           <h1>Add Taskks</h1>
         </div>
-        <select class="chzn-select" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list" id="select_list" style="width:200px;"></select><input class="title_entry" data-bind="value: task_title, visible: show_title, valueUpdate: 'afterkeydown', validationElement: task_title" id="title" placeholder="What do you need to do?" type="text" /><span class="message label label-error" id="title_error"></span><input class="est_entry" data-bind="value: task_estimate, visible: show_estimate, valueUpdate: 'afterkeydown', validationElement: task_estimate" id="estimate" placeholder="How long will it take?" type="text" /><span class="message label label-error" id="estimate_error"></span>
+        <select class="chzn-select" data-bind="options: lists(), optionsText: 'title', optionsValue: 'id', value: selected_list" id="select_list" style="width:200px;"></select><input class="title_entry" data-bind="value: task_title, visible: show_title, valueUpdate: 'afterkeydown', validationElement: task_title" id="title" placeholder="What do you need to do?" type="text" /><input class="est_entry" data-bind="value: task_estimate, visible: show_estimate, valueUpdate: 'afterkeydown', validationElement: task_estimate" id="estimate" placeholder="How long will it take?" type="text" />
         <div data-bind="visible: show_loader" id="loader">
           <br /><img src="./img/ajax-loader.gif" />
         </div>
