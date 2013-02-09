@@ -37,6 +37,7 @@ window.QuickTaskk = ->
     ping.success (data) =>
       @show_login(false)
       @show_create_task(true)
+      $("#task_title").focus()
       @load_lists()
       return
     ping.error (data) =>

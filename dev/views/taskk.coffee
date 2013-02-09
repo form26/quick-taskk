@@ -31,6 +31,7 @@ $(document).ready ->
         reset_fields()
         $("#message").text("Task created!")
         $("#message").fadeIn('fast').delay('2000').fadeOut('fast')
+        $("#task_title").focus()
         return false
 
       new_task.error (data) ->

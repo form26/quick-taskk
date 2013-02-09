@@ -30,6 +30,7 @@
       ping.success(function(data) {
         _this.show_login(false);
         _this.show_create_task(true);
+        $("#task_title").focus();
         _this.load_lists();
       });
       ping.error(function(data) {
