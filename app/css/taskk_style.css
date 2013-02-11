@@ -9,6 +9,9 @@ html {
   margin: 0;
   height: 250px; }
 
+.chzn-results {
+  max-height: 150px !important; }
+
 a {
   font-size: small; }
 
