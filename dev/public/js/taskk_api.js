@@ -3,7 +3,7 @@
   var TaskkAPI;
 
   TaskkAPI = (function() {
-    var auth, domain;
+    var auth, domain, make_base_auth;
 
     domain = "https://api.taskk.it/v1/";
 
@@ -24,13 +24,17 @@
       return $.get(domain + "auth/ping/" + auth);
     };
 
+    make_base_auth = function(user, password) {};
+
     TaskkAPI.prototype.login = function(login, password) {
       return $.ajax({
         type: "POST",
         url: domain + "auth/login/",
         beforeSend: function(xhr) {
-          var basic_auth;
-          basic_auth = "Basic " + login + ":" + password;
+          var basic_auth, hash, tok;
+          tok = login + ":" + password;
+          hash = btoa(tok);
+          basic_auth = "Basic " + hash;
           xhr.setRequestHeader("Authorization", basic_auth);
         }
       });
@@ -52,19 +56,27 @@
       return $.get(domain + "lists/" + id + "/" + auth);
     };
 
-    TaskkAPI.prototype.create_task = function(title, estimate, list_id) {
-      return $.post(domain + "tasks/" + auth, {
-        title: title,
-        estimate: estimate,
-        list_id: list_id
+    TaskkAPI.prototype.create_task = function(params) {
+      return $.ajax({
+        url: domain + "tasks/" + auth,
+        type: "POST",
+        data: JSON.stringify({
+          task: params
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
       });
     };
 
-    TaskkAPI.prototype.create_list = function(title, descriptiong, color) {
-      return $.post(domain + "lists/" + auth, {
-        title: title,
-        description: description,
-        color: color
+    TaskkAPI.prototype.create_list = function(params) {
+      return $.ajax({
+        url: domain + "lists/" + auth,
+        type: "POST",
+        data: JSON.stringify({
+          list: params
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
       });
     };
 
@@ -72,7 +84,11 @@
       return $.ajax({
         url: domain + "tasks/" + id + "/" + auth,
         type: "PUT",
-        data: params
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({
+          task: params
+        })
       });
     };
 
@@ -80,7 +96,11 @@
       return $.ajax({
         url: domain + "lists/" + id + "/" + auth,
         type: "PUT",
-        data: params
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({
+          list: params
+        })
       });
     };
 

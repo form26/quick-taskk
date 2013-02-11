@@ -22,11 +22,16 @@
       }
     };
     enter_estimate = function() {
-      var new_task;
+      var new_task, params;
       if (ViewModel.task_estimate.isValid()) {
         ViewModel.show_estimate(false);
         ViewModel.show_loader(true);
-        new_task = taskk_api.create_task(ViewModel.task_title, ViewModel.task_estimate, ViewModel.selected_list);
+        params = {
+          title: ViewModel.task_title(),
+          estimate: ViewModel.task_estimate(),
+          list_id: ViewModel.selected_list
+        };
+        new_task = taskk_api.create_task(params);
         localStorage.selected_list = ViewModel.selected_list;
         new_task.success(function(data) {
           reset_fields();
