@@ -29,7 +29,7 @@
         params = {
           title: ViewModel.task_title(),
           estimate: ViewModel.task_estimate(),
-          list_id: ViewModel.selected_list
+          list_id: ViewModel.selected_list()
         };
         new_task = taskk_api.create_task(params);
         localStorage.selected_list = ViewModel.selected_list;
@@ -73,7 +73,7 @@
       ViewModel.show_login(true);
     }
     if (localStorage.selected_list) {
-      ViewModel.selected_list = localStorage.selected_list;
+      ViewModel.selected_list(localStorage.selected_list);
     }
     $(document).keypress(function(e) {
       if (e.which === 13) {

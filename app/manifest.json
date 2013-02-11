@@ -1,6 +1,6 @@
 {
   "name": "Taskk",
-  "version": "1.0",
+  "version": "1.1.1",
   "manifest_version": 2,
   "description": "Quickly add your tasks from Chrome!",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

@@ -21,7 +21,7 @@ $(document).ready ->
     if ViewModel.task_estimate.isValid()
       ViewModel.show_estimate(false)
       ViewModel.show_loader(true)
-      params = {title: ViewModel.task_title(), estimate: ViewModel.task_estimate(), list_id: ViewModel.selected_list}
+      params = {title: ViewModel.task_title(), estimate: ViewModel.task_estimate(), list_id: ViewModel.selected_list()}
       new_task = taskk_api.create_task(params)
 
       localStorage.selected_list = ViewModel.selected_list
@@ -74,7 +74,7 @@ $(document).ready ->
     ViewModel.show_login(true)
 
   if localStorage.selected_list
-    ViewModel.selected_list = localStorage.selected_list
+    ViewModel.selected_list(localStorage.selected_list)
 
 
   $(document).keypress (e) ->
