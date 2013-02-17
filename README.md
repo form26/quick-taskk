@@ -1,7 +1,9 @@
 Quick Taskk - Chrome Extension
 ===================
 
-**Rapidly add tasks to taskk.** 
+**Rapidly add tasks to taskk.**  
+
+See it in the [Chrome Store](https://chrome.google.com/webstore/detail/taskk/mglaofmgddonigocgmjabebgnmlbjked).
 
 
 ![taskk](https://www.filepicker.io/api/file/Hb1JkakWS2aEmsBaWxfZ)
