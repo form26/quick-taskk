@@ -1,12 +1,13 @@
 $(document).ready ->
-  reset_fields = () =>
+  reset_fields = =>
     ViewModel.show_loader(false)
     ViewModel.task_title('')
     ViewModel.task_estimate('')
     ViewModel.show_title(true) 
     $('#task_title').focus()
 
-  enter_title = () =>
+  # enter Task Title view
+  enter_title = =>
     # if title is valid. Show estimate field
     if ViewModel.task_title.isValid()
       ViewModel.show_title(false)
@@ -17,7 +18,8 @@ $(document).ready ->
       $("#message_error").fadeIn('fast').delay('2750').fadeOut('fast')
     return
 
-  enter_estimate = () =>
+  # enter Task estimate view
+  enter_estimate = =>
     if ViewModel.task_estimate.isValid()
       ViewModel.show_estimate(false)
       ViewModel.show_loader(true)
@@ -47,9 +49,6 @@ $(document).ready ->
   window.ViewModel = new QuickTaskk
   window.taskk_api = new TaskkAPI
 
-  # enable knockout validation
-  # ko.validation.init()
-
   ko.validation.configure({
     registerExtenders: true,
     messagesOnModified: false,
@@ -78,6 +77,7 @@ $(document).ready ->
 
 
   $(document).keypress (e) ->
+    # when user presses enter validate title/estimate
     if e.which == 13
       if ViewModel.show_title()
           enter_title()
